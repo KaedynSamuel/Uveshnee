@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown | Uveshnee</title>
+  <link rel="stylesheet" href="index.css">
+
+   <link rel="icon" href="Pink Cute Simple Flower Shop Circle Logo (1) (1).png" type="image/x-icon" />
+  <style>
+    .hidden { display: none; }
+
+    .countdown {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #ffffff;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .error {
+      color: red;
+      display: none;
+    }
+
+    #loveLetterBtn {
+      display: none; /* hidden by default */
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #ff4081;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    #loveLetterBtn:hover {
+      background: #e91e63;
+    }
+
+    /* Memories Section */
+    .memories {
+      margin-top: 40px;
+      padding: 15px;
+    }
+
+    .memories h2 {
+      text-align: center;
+      color: #ff4081;
+      margin-bottom: 20px;
+    }
+
+    .memory-card {
+      background: white;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .memory-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .memory-card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .memory-card h3 {
+      margin: 0;
+      color: #e91e63;
+    }
+
+    .memory-card p {
+      margin-top: 8px;
+      font-size: 0.95rem;
+      color: #333;
+    }
+
+    body { overflow-y: auto; }
+  </style>
+</head>
+<body>
+
+  <!-- Login Page -->
+  <div id="loginPage" class="login-container">
+    <h2>Login to Uveshnee</h2>
+    <input type="text" id="username" placeholder="Enter Username"><br>
+    <input type="password" id="password" placeholder="Enter Password"><br>
+    <button onclick="login()">Login</button>
+    <p id="error" class="error">Incorrect username or password!</p>
+  </div>
+
+  <!-- Main Website -->
+  <div id="mainPage" class="hidden">
+    <nav>
+      <h1>Uveshnee ❤️</h1>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </nav>
+
+    <!-- Sidebar Menu -->
+    <div id="sidebar" class="sidebar">
+      <button class="close-btn" onclick="toggleMenu()">✖</button>
+      <ul>
+        <li><a href="Index.html">⏰ CountDown</a></li>
+        <li><a href="About.html">💖 About</a></li>
+        <li><a href="Store.html">🛒 Store</a></li>
+      </ul>
+    </div>
+
+    <div class="content">
+      <h2>Welcome Baby ❤️</h2>
+      <p>You can explore for the time being 💕</p>
+
+      <!-- Countdown -->
+      <div class="countdown" id="countdown"></div>
+
+      <!-- Love Letter Button -->
+      <button id="loveLetterBtn" onclick="goToLoveLetter()">Read Your Love Letter 💌</button>
+
+ <!-- Memories Section -->
+<div class="memories">
+  <h2>Our Sweet Memories 💖</h2>
+
+  <div class="memory-card">
+    <img src="images/i9.JPEG" alt="Memory 1">
+    <h3>✨ Where I Fell in Love</h3>
+    <p>The moment I looked into your eyes, I knew my heart had found its home. 💕</p>
+  </div>
+
+  <div class="memory-card">
+    <img src="images/i6.JPEG" alt="Memory 2">
+    <h3>💓 Where My Heart Got Attracted</h3>
+    <p>Your smile lit up my world and I couldn’t help but fall for you. 🌸</p>
+  </div>
+
+  <div class="memory-card">
+    <img src="images/i8.JPEG" alt="Memory 3">
+    <h3>🌹 A Memory Forever</h3>
+    <p>Every second with you became my favorite story to tell. ❤️</p>
+  </div>
+
+  <!-- New Memory Card -->
+  <div class="memory-card">
+    <img src="images/i11.JPEG" alt="Memory 4">
+    <h3>🌟 A Special Moment</h3>
+    <p>Every laugh we shared made me fall in love with you even more. 💖</p>
+  </div>
+</div>
+
+<!-- Quiz Section -->
+<div class="quiz-section">
+  <h2>🩷🦥 Our Quiz 🩷🦥 </h2>
+  <div id="quiz-container"></div>
+  <button id="nextBtn" onclick="nextQuestion()">Next ➡️</button>
+  <div id="quiz-result" class="hidden"></div>
+</div>
+
+
+  <script>
+    // Auto-login: check if already logged in
+    document.addEventListener("DOMContentLoaded", () => {
+      if(localStorage.getItem("loggedIn") === "true") {
+        document.getElementById("loginPage").classList.add("hidden");
+        document.getElementById("mainPage").classList.remove("hidden");
+        startCountdown();
+      }
+    });
+
+    // Login Function
+    function login() {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const error = document.getElementById("error");
+
+      if (username === "UV" && password === "2") {
+        localStorage.setItem("loggedIn", "true"); // remember login
+        document.getElementById("loginPage").classList.add("hidden");
+        document.getElementById("mainPage").classList.remove("hidden");
+        error.style.display = "none";
+        startCountdown();
+      } else {
+        error.style.display = "block";
+      }
+    }
+
+    // Menu Toggle
+    function toggleMenu() {
+      document.getElementById("sidebar").classList.toggle("show");
+    }
+
+    // Go to Love Letter Page
+    function goToLoveLetter() {
+      window.location.href = "loveletter.html";
+    }
+
+    // Countdown Function for midnight, 16 Sept Thailand time (UTC+7)
+    function startCountdown() {
+      // 16 Sept 2025, 00:00 TH time is 15 Sept 17:00 UTC
+      const targetDate = new Date(Date.UTC(2025, 8, 15, 17, 0, 0)); 
+      const countdownElement = document.getElementById("countdown");
+      const loveLetterBtn = document.getElementById("loveLetterBtn");
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance < 0) {
+          countdownElement.innerHTML = "⏰ Time’s up, baby! 💖";
+          loveLetterBtn.style.display = "block"; // show button only when countdown finishes
+          clearInterval(interval);
+          return;
+        }
+
+        const days = Math.floor(distance / (1000*60*60*24));
+        const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+        const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+        const seconds = Math.floor((distance % (1000*60)) / 1000);
+
+        countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s left until your surprise 💖`;
+      }
+
+      const interval = setInterval(updateCountdown, 1000);
+      updateCountdown();
+    }
+  </script>
+
+  <script src="index.js"></script>
+</body>
+</html>

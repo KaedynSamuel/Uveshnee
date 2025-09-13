@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="Pink Cute Simple Flower Shop Circle Logo (1) (1).png" type="image/x-icon" />
+<title>About | Love Letter</title>
+<style>
+  /* Body and background */
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: url('images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    overflow-x: hidden;
+    overflow-y: auto; /* enable vertical scrolling */
+    min-height: 100vh;
+    padding-bottom: 120px; /* space at bottom for scrolling */
+  }
+
+  /* Navbar */
+  nav {
+    background: rgb(0, 0, 0);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+
+  nav h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #ffdee9;
+  }
+
+  .menu-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    right: -250px;
+    width: 250px;
+    height: 100%;
+    background: rgb(0, 0, 0);
+    padding-top: 60px;
+    transition: 0.3s;
+    z-index: 1100;
+  }
+  .sidebar.show { right: 0; }
+
+  .sidebar ul { list-style: none; padding: 0; margin: 0; text-align: center; }
+  .sidebar ul li { margin: 20px 0; }
+  .sidebar ul li a { text-decoration: none; color: white; font-size: 1.2rem; font-weight: bold; transition: 0.3s; }
+  .sidebar ul li a:hover { color: #ff7eb3; }
+  .close-btn { position: absolute; top: 15px; right: 15px; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+
+
+  /* Hero Section */
+  .hero {
+    max-width: 900px;
+    margin: 140px auto 50px auto; /* top margin for navbar */
+    padding: 30px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    text-align: center;
+    color: #000;
+  }
+  .hero h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #ff3477;
+  }
+  .hero p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+  }
+
+  /* Card Grid */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 1000px;
+    margin: 20px auto 80px auto; /* bottom margin for scrolling */
+    padding: 0 20px;
+  }
+
+  /* Cards */
+  .card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 10px;
+    background: rgba(0,0,0,0.4);
+    color: white;
+  }
+
+  /* Blurred thumbnail image */
+  .card .thumb {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-size: cover;
+    background-position: center;
+    filter: blur(6px);
+    transition: all 0.5s ease;
+    z-index: 1;
+  }
+
+  /* Message content on top */
+  .card .content {
+    position: relative;
+    z-index: 2;
+    padding: 10px;
+  }
+
+  /* Full image overlay */
+  .card .full-img {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 3;
+  }
+
+  /* Reveal full image and hide message */
+  .card.reveal .content { opacity: 0; }
+  .card.reveal .thumb { opacity: 0; }
+  .card.reveal .full-img { opacity: 1; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .card-grid { grid-template-columns: repeat(2, 1fr); }
+    .card { height: 200px; font-size: 1rem; }
+  }
+  @media (max-width: 480px) {
+    .card-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .card { height: 180px; font-size: 0.9rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <h1>💌 Love Letter</h1>
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+</nav>
+
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+  <button class="close-btn" onclick="toggleMenu()">✖</button>
+  <ul>
+    <li><a href="Index.html">⏰ CountDown</a></li>
+    <li><a href="About.html">💖 About</a></li>
+    <li><a href="Store.html">🛒 Store</a></li>
+  </ul>
+</div>
+
+<!-- Hero Section -->
+<section class="hero">
+  <h2>💖 Why I Did This</h2>
+  <p>
+    From the moment you came into my life, you became my world.  
+    Every struggle I’ve faced has led me to you.  
+    You are my joy, my inspiration, my reason for striving every day.  
+    I would fight anything and move mountains just to see you happy.  
+    Everything I do, I do for you and our future together.  
+</section>
+
+<!-- Cards -->
+<div class="card-grid">
+  <div class="card" onclick="toggleCard(this)">
+    <div class="thumb" style="background-image: url('images/i1.JPEG');"></div>
+    <div class="full-img" style="background-image: url('images/i1.JPEG');"></div>
+    <div class="content">💖 My Love<br>My love for you is endless and timeless</div>
+  </div>
+  <div class="card" onclick="toggleCard(this)">
+    <div class="thumb" style="background-image: url('images/i4.JPEG');"></div>
+    <div class="full-img" style="background-image: url('images/i4.JPEG');"></div>
+    <div class="content">🌍 My Life<br>I will always protect you and cherish every moment with you</div>
+  </div>
+  <div class="card" onclick="toggleCard(this)">
+    <div class="thumb" style="background-image: url('images/i10.JPEG');"></div>
+    <div class="full-img" style="background-image: url('images/i10.JPEG');"></div>
+    <div class="content">🎶 Your Heart<br>Your heart is mine, forever safe in my love</div>
+  </div>
+  <div class="card" onclick="toggleCard(this)">
+    <div class="thumb" style="background-image: url('images/i11.JPEG');"></div>
+    <div class="full-img" style="background-image: url('images/i11.JPEG');"></div>
+    <div class="content">💌 Forever and Always<br>I am who I am because of you, and my love will never change</div>
+  </div>
+</div>
+
+
+<script>
+function toggleMenu() {
+  document.getElementById("sidebar").classList.toggle("show");
+}
+
+// Reveal full image on click
+function toggleCard(card) {
+  card.classList.toggle('reveal');
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <link rel="icon" href="Pink Cute Simple Flower Shop Circle Logo (1) (1).png" type="image/x-icon" />
+  <title>Love Letter | Uveshnee </title>
+  <style>
+    /* Body and basic styles */
+    body {
+      background: linear-gradient(135deg, #ff7eb3, #ff758c);
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      padding-bottom: 350px; /* space at bottom for scrolling */
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    nav {
+      background: rgb(0, 0, 0);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+    }
+
+    nav h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: #ffdee9;
+    }
+
+    .menu-toggle {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      right: -250px;
+      width: 250px;
+      height: 100%;
+      background: rgb(0, 0, 0);
+      padding-top: 60px;
+      transition: 0.3s;
+      z-index: 1100;
+    }
+
+    .sidebar.show {
+      right: 0;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+    }
+
+    .sidebar ul li {
+      margin: 20px 0;
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .sidebar ul li a:hover {
+      color: #ff7eb3;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Letter styling */
+    .letter {
+      max-width: 600px;
+      margin: 120px auto 20px auto; /* top margin for navbar */
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 15px;
+      border: 3px solid white;
+    }
+
+    #letter-text {
+      white-space: pre-wrap;
+    }
+
+    /* Card at the bottom */
+    .card-container {
+      max-width: 600px;
+      margin: 40px auto 20px auto;
+      text-align: center;
+    }
+
+    .card {
+      position: relative;
+      border-radius: 20px;
+      padding: 10px;
+      overflow: hidden;
+      background: #000;
+      margin-bottom: 15px;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      z-index: -1;
+      border-radius: 20px;
+      background: conic-gradient(
+        from 0deg,
+        #ff69b4,
+        #ffb6c1,
+        #ff69b4,
+        #ffb6c1
+      );
+      animation: rotateBorder 3s linear infinite;
+    }
+
+    @keyframes rotateBorder {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 15px;
+      display: block;
+    }
+
+    .card p {
+      margin-top: 1px;
+      font-size: 1rem;
+      color: white;
+    }
+
+    /* WhatsApp button */
+    .whatsapp-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: white;
+      background-color: #000000;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      border: 3px solid white;
+      position: relative;
+      z-index: 1;
+    }
+
+    .whatsapp-btn:hover {
+      background-color: #000000;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .letter {
+        width: 95%;
+        padding: 15px;
+      }
+
+      .card-container {
+        width: 95%;
+      }
+
+      .whatsapp-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <h1>💌 Love Letter</h1>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  </nav>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <button class="close-btn" onclick="toggleMenu()">✖</button>
+    <ul>
+      <li><a href="Index.html">⏰ CountDown</a></li>
+      <li><a href="About.html">💖 About</a></li>
+      <li><a href="Store.html">🛒 Store</a></li>
+    </ul>
+  </div>
+
+  <!-- Love letter -->
+  <div class="letter">
+    <h1>My Love ❤️</h1>
+    <div id="letter-text"></div>
+    <p>
+      Forever yours,<br>
+      Kaedyn Samuel Padayachee 
+    </p>
+  </div>
+
+  <!-- Card and WhatsApp -->
+  <div class="card-container">
+    <div class="card">
+      <img src="images/i10.JPEG" alt="Beautiful memory">
+      <p>Remember this special moment, ❤️ <br>My love for you is endless</p>
+    </div>
+
+    <a class="whatsapp-btn" href="https://wa.me/0829074784" target="_blank">
+      You can call me Baby
+    </a>
+  </div>
+
+  <script>
+    // Typing effect for letter
+    const fullText = `Dear Uveshnee Govender, My love, my beautiful one, my only. The words I write today 
+could never capture the ocean of love I carry for you, but still, I try. You have become 
+my closest companion, my greatest discovery, and my most cherished story. From knowing your 
+favorite color is pink to learning how much you love flying and traveling the world to finding 
+yourself. Every detail of you has become a treasure etched into me. Wherever you go, I will go too if not 
+in body, then in heart. Wherever I wander, you will live within me. If these words bring tears to your eyes, 
+let them be tears of knowing you are deeply loved, fiercely cared for, and endlessly wanted. You make me feel 
+alive in a way that I never imagined. With you beside me, I feel unstoppable, like the universe itself bends to 
+bless us. You are not just special; you are extraordinary, radiant, breathtaking. Every day I fall deeper and 
+deeper, and I never wish to stop falling because there will always be more of you to discover, more of us to create, 
+more love to be born between us. My heart is yours through joy and sorrow, through struggle and triumph, through life 
+and beyond it. Forget everything else: if I had only the look you give me, the light of your smile, I would be fulfilled 
+for eternity. The day you were born, the world shifted. Flowers bloomed brighter, winds blew softer, and a perfect woman 
+entered the earth the one destined to hold my soul. I may not be beside you as you read this, but know that I am missing
+you with every beat of my heart. I once promised myself that the woman I love would never be hurt by my 
+hands and with you, I vow it forever. Even in the simple things, like the three kisses I give you, there 
+is meaning: One for our love. One for our future. One for our happiness. The last kiss lingers the longest,
+because as long as I can keep you happy, I know I am living my purpose. We will face struggles, yes, but
+always together. Nothing will break us, nothing will take you from me. I want all of you the laughter, 
+the tears, the chaos, the beauty every piece that makes you you. I know you’ve endured pain, and I will
+spend my life protecting you from it. From the moment I held your hand, I saw not just the marks of 
+struggle but the strength of a woman I deeply respect. I knew then: my life’s mission is to make yours 
+safe, whole, and filled with joy. Let your family see it too your father, your mother, your sister, 
+your granny let them know I will cherish you above all, and that my love for you is unwavering. If my
+actions haven’t yet spoken loudly 
+enough, let these words echo what I feel: You are my only, my 
+always, my forever.`;
+
+    const letterDiv = document.getElementById("letter-text");
+    let index = 0;
+
+    function typeLetter() {
+      if (index < fullText.length) {
+        letterDiv.innerHTML += fullText.charAt(index);
+        index++;
+        setTimeout(typeLetter, 5);
+      }
+    }
+
+    window.addEventListener("load", typeLetter);
+
+    // Sidebar toggle
+    function toggleMenu() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("show");
+    }
+  </script>
+
+</body>
+</html>
