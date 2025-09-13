@@ -228,6 +228,90 @@ function toggleCard(card) {
 }
 </script>
 
-</body>
-</html>
+<!-- Video + Music Section -->
+<section class="video-section">
+  <h2 style="text-align:center; color:#000000; margin-bottom:20px;">🎥Our love</h2>
+  
+  <div class="video-container">
+    <video id="loveVideo" autoplay loop >
+      <source src="images/Uv.mov" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
 
+  <!-- Button to unmute -->
+  <div style="text-align:center; margin-top:15px;">
+    <button onclick="toggleMute()" class="sound-btn">🔊 Play with Sound</button>
+  </div>
+</section>
+
+<style>
+.video-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+  width: 100%;
+  max-width: 900px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.video-container video {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+/* Mobile-friendly button */
+.sound-btn {
+  padding: 14px 24px;
+  border: none;
+  border-radius: 10px;
+  background: #ff3477;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.sound-btn:hover {
+  background: #ff5c92;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .video-container {
+    margin: 15px auto;
+    max-width: 95%;
+    border-radius: 12px;
+  }
+
+  .sound-btn {
+    width: 80%;
+    font-size: 1rem;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sound-btn {
+    width: 90%;
+    font-size: 0.95rem;
+    padding: 12px;
+  }
+}
+</style>
+
+<script>
+function toggleMute() {
+  const video = document.getElementById("loveVideo");
+  video.muted = !video.muted;
+
+  // Update button text
+  const btn = document.querySelector(".sound-btn");
+  btn.textContent = video.muted ? "🔇 Play with Sound" : "🔊 Sound On";
+}
+</script>
