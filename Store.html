@@ -173,7 +173,7 @@
 </div>
 
 <div class="wallet" id="wallet-container">
-  💰 Your Money: R<span id="wallet">1000</span>
+  💰 Your Money: R<span id="wallet">1050</span>
 </div>
 
 <div class="store-grid">
@@ -238,7 +238,7 @@ function toggleMenu() {
 
 let wallet = localStorage.getItem("wallet") 
   ? parseInt(localStorage.getItem("wallet")) 
-  : 1000;
+  : 1050;
 
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("wallet").textContent = wallet;
@@ -319,6 +319,3 @@ function buyItem(price, imgSrc, button) {
 
 </body>
 </html>
-
-
-
