@@ -84,8 +84,8 @@
 
   .item img {
     width: 100%;
-    height: 200px; /* fixed height for all images */
-    object-fit: cover; /* maintain aspect ratio and crop if needed */
+    height: 200px; 
+    object-fit: cover;
     border-radius: 15px;
     margin-bottom: 10px;
     transition: transform 0.3s ease;
@@ -98,20 +98,19 @@
   .item h3 { margin: 10px 0 5px 0; font-size: 1.2rem; color: #ffdee9; }
   .item p { margin: 5px 0 10px 0; font-size: 1rem; color: #ffe1f0; }
 
-.buy-btn {
+  .buy-btn {
     background: linear-gradient(135deg, #ff69b4, #ff85c1);
     color: white;
-    border: 3px solid #fff; /* corrected from "soild" to "solid" */
+    border: 3px solid #fff;
     padding: 5px 30px;
     border-radius: 15px;
     cursor: pointer;
     font-weight: bold;
     transition: all 0.3s ease;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
+  }
 
-
-  .buy-btn:hover {
+  .buy-btn:hover:not(:disabled) {
     background: linear-gradient(135deg, #ff85c1, #ffb3d1);
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.5);
@@ -121,7 +120,6 @@
   @media (max-width: 768px) { .store-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 480px) { .store-grid { grid-template-columns: repeat(2, 1fr); } }
 
-  /* Flying animation */
   .flying-img {
     position: fixed;
     width: 100px;
@@ -133,7 +131,6 @@
     pointer-events: none;
   }
 
-  /* Purchase popup */
   .popup {
     display: none;
     position: fixed;
@@ -169,7 +166,7 @@
 <div id="sidebar" class="sidebar">
   <button class="close-btn" onclick="toggleMenu()">✖</button>
   <ul>
-    <li><a href="index.html">⏰ CountDown</a></li>
+    <li><a href="Index.html">⏰ CountDown</a></li>
     <li><a href="About.html">💖 About</a></li>
     <li><a href="Store.html">🛒 Store</a></li>
   </ul>
@@ -205,28 +202,28 @@
     <button class="buy-btn" onclick="buyItem(250,'images/bab4.jpg',this)">Buy</button>
   </div>
   <div class="item">
-    <img src="images/i5.JPEG" alt="Picture 5">
+    <img src="images/Baby5.jpeg" alt="Picture 5">
     <h3>Picture 5</h3>
     <p>Price: R200</p>
-    <button class="buy-btn" onclick="buyItem(200,'images/i5.JPEG',this)">Buy</button>
+    <button class="buy-btn" onclick="buyItem(200,'images/Baby5.jpeg',this)">Buy</button>
   </div>
   <div class="item">
-    <img src="images/i6.JPEG" alt="Picture 6">
+    <img src="images/baby6.jpeg" alt="Picture 6">
     <h3>Picture 6</h3>
     <p>Price: R300</p>
-    <button class="buy-btn" onclick="buyItem(300,'images/i6.JPEG',this)">Buy</button>
+    <button class="buy-btn" onclick="buyItem(300,'images/baby6.jpeg',this)">Buy</button>
   </div>
   <div class="item">
-    <img src="images/i7.JPEG" alt="Picture 7">
+    <img src="images/baby7.jpeg" alt="Picture 7">
     <h3>Picture 7</h3>
     <p>Price: R250</p>
-    <button class="buy-btn" onclick="buyItem(250,'images/i7.JPEG',this)">Buy</button>
+    <button class="buy-btn" onclick="buyItem(250,'images/baby7.jpeg',this)">Buy</button>
   </div>
   <div class="item">
-    <img src="images/i8.JPEG" alt="Picture 8">
+    <img src="images/baby8.jpeg" alt="Picture 8">
     <h3>Picture 8</h3>
     <p>Price: R200</p>
-    <button class="buy-btn" onclick="buyItem(200,'images/i8.JPEG',this)">Buy</button>
+    <button class="buy-btn" onclick="buyItem(200,'images/baby8.jpeg',this)">Buy</button>
   </div>
 </div>
 
@@ -239,7 +236,25 @@ function toggleMenu() {
   document.getElementById("sidebar").classList.toggle("show");
 }
 
-let wallet = 1000;
+let wallet = localStorage.getItem("wallet") 
+  ? parseInt(localStorage.getItem("wallet")) 
+  : 1000;
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("wallet").textContent = wallet;
+
+  // Restore purchased items
+  const purchased = JSON.parse(localStorage.getItem("purchasedItems")) || [];
+  purchased.forEach(src => {
+    const btn = document.querySelector(`button[onclick*="${src}"]`);
+    if (btn) {
+      btn.textContent = "💖 Purchased";
+      btn.disabled = true;
+      btn.style.background = "gray";
+      btn.style.cursor = "not-allowed";
+    }
+  });
+});
 
 function showPopup(id, duration=5000) {
   const popup = document.getElementById(id);
@@ -250,9 +265,20 @@ function showPopup(id, duration=5000) {
 function buyItem(price, imgSrc, button) {
   if(wallet >= price){
     wallet -= price;
+    localStorage.setItem("wallet", wallet);
     document.getElementById("wallet").textContent = wallet;
 
-    // Flying image
+    let purchased = JSON.parse(localStorage.getItem("purchasedItems")) || [];
+    if (!purchased.includes(imgSrc)) {
+      purchased.push(imgSrc);
+      localStorage.setItem("purchasedItems", JSON.stringify(purchased));
+    }
+
+    button.textContent = "💖 Purchased";
+    button.disabled = true;
+    button.style.background = "gray";
+    button.style.cursor = "not-allowed";
+
     const img = document.createElement('img');
     img.src = imgSrc;
     img.classList.add('flying-img');
@@ -281,13 +307,11 @@ function buyItem(price, imgSrc, button) {
       link.click();
       document.body.removeChild(link);
 
-      // Show purchase popup for 5 seconds
       showPopup("purchase-popup", 9000);
 
     }, 1050);
 
   } else {
-    // Show no-money popup for 5 seconds
     showPopup("no-money-popup", 10000);
   }
 }
