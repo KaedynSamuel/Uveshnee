@@ -6,53 +6,53 @@
   <title>Countdown | Uveshnee</title>
   <link rel="icon" href="Pink Cute Simple Flower Shop Circle Logo (1) (1).png" type="image/x-icon" />
   <style>
-    body { font-family: 'Poppins', sans-serif; margin: 0; background: #000; color: white; overflow-y: auto; }
+    body { margin:0; font-family:'Poppins', sans-serif; overflow-y:auto; background:#ffeef3; }
 
     .hidden { display: none; }
 
-    /* Login */
-    .login-container { text-align: center; padding: 50px; }
-    .login-container input { padding: 10px; margin: 5px; border-radius: 5px; border: none; }
-    .login-container button { padding: 10px 20px; margin-top: 10px; border: none; border-radius: 8px; background: #ff4081; color: white; cursor: pointer; }
-    .login-container button:hover { background: #e91e63; }
-    .error { color: red; display: none; }
+    /* Login Page */
+    #loginPage { text-align:center; margin-top:100px; }
+    #loginPage input { padding:10px; margin:5px 0; border-radius:8px; border:1px solid #ccc; width:200px; }
+    #loginPage button { padding:10px 20px; border:none; border-radius:8px; background:#ff4081; color:white; cursor:pointer; }
+    #loginPage button:hover { background:#e91e63; }
+    .error { color:red; display:none; }
 
     /* Navbar */
-    nav { background: rgb(0,0,0,0.9); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; left:0; right:0; z-index: 1000; }
-    nav h1 { margin: 0; font-size: 1.5rem; color: #ffdee9; }
-    .menu-toggle { background: none; border: none; color: white; font-size: 1.8rem; cursor: pointer; }
+    nav { background: rgb(0,0,0); padding:15px 20px; display:flex; justify-content:space-between; align-items:center; position:fixed; top:0; left:0; right:0; z-index:1000; backdrop-filter:blur(5px);}
+    nav h1 { margin:0; font-size:1.5rem; color:#ffdee9;}
+    .menu-toggle { background:none; border:none; color:white; font-size:1.8rem; cursor:pointer;}
 
     /* Sidebar */
-    .sidebar { position: fixed; top: 0; right: -250px; width: 250px; height: 100%; background: rgba(0,0,0,0.95); padding-top: 60px; transition: 0.3s; z-index: 1100; border-left: 2px solid #ff4081; box-shadow: -4px 0 15px rgba(255,64,129,0.5); }
-    .sidebar.show { right: 0; }
-    .sidebar ul { list-style: none; padding: 0; margin: 0; text-align: center; }
-    .sidebar ul li { margin: 20px 0; }
-    .sidebar ul li a { text-decoration: none; color: white; font-size: 1.2rem; font-weight: bold; transition: 0.3s; }
-    .sidebar ul li a:hover { color: #ff7eb3; text-shadow: 0 0 10px #ff4081; }
-    .close-btn { position: absolute; top: 15px; right: 15px; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+    .sidebar { position:fixed; top:0; right:-250px; width:250px; height:100%; background:rgba(0,0,0,0.95); padding-top:60px; transition:0.3s; z-index:1100; border-left:2px solid #ff4081; }
+    .sidebar.show { right:0; }
+    .sidebar ul { list-style:none; padding:0; margin:0; text-align:center;}
+    .sidebar ul li { margin:20px 0;}
+    .sidebar ul li a { text-decoration:none; color:white; font-size:1.2rem; font-weight:bold; transition:0.3s;}
+    .sidebar ul li a:hover { color:#ff7eb3; }
+    .close-btn { position:absolute; top:15px; right:15px; background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;}
 
-    /* Countdown */
-    .countdown { font-size: 2rem; font-weight: bold; color: #ffffff; margin-top: 100px; text-align: center; }
-
-    /* Love Letter Button */
-    #loveLetterBtn { display: none; margin: 20px auto; padding: 10px 20px; background: #ff4081; color: white; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; display: block; }
-    #loveLetterBtn:hover { background: #e91e63; }
+    /* Content */
+    .content { margin-top:80px; text-align:center; padding:0 20px;}
+    .countdown { font-size:2rem; font-weight:bold; color:#ff4081; margin:20px 0;}
+    #loveLetterBtn { display:none; margin-top:20px; padding:10px 20px; background:#ff4081; color:white; border:none; border-radius:8px; font-size:1rem; cursor:pointer; transition:0.3s;}
+    #loveLetterBtn:hover { background:#e91e63;}
 
     /* Memories */
-    .memories { margin-top: 40px; padding: 15px; }
-    .memories h2 { text-align: center; color: #ff4081; margin-bottom: 20px; }
-    .memory-card { background: white; border-radius: 12px; padding: 15px; margin-bottom: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center; transition: transform 0.3s ease; color: black; }
-    .memory-card:hover { transform: translateY(-5px); }
-    .memory-card img { width: 100%; border-radius: 10px; margin-bottom: 10px; }
-    .memory-card h3 { margin: 0; color: #e91e63; }
-    .memory-card p { margin-top: 8px; font-size: 0.95rem; }
+    .memories { margin-top:40px; padding:15px; }
+    .memories h2 { text-align:center; color:#ff4081; margin-bottom:20px; }
+    .memory-card { background:white; border-radius:12px; padding:15px; margin-bottom:20px; box-shadow:0 4px 8px rgba(0,0,0,0.1); text-align:center; transition:transform 0.3s ease; }
+    .memory-card:hover { transform:translateY(-5px);}
+    .memory-card img { width:100%; border-radius:10px; margin-bottom:10px;}
+    .memory-card h3 { margin:0; color:#e91e63; }
+    .memory-card p { margin-top:8px; font-size:0.95rem; color:#333;}
+
   </style>
 </head>
 <body>
 
   <!-- Login Page -->
-  <div id="loginPage" class="login-container">
-    <h2>Login to Uveshnee</h2>
+  <div id="loginPage">
+    <h2>Login to Uveshnee ❤️</h2>
     <input type="text" id="username" placeholder="Enter Username"><br>
     <input type="password" id="password" placeholder="Enter Password"><br>
     <button onclick="login()">Login</button>
@@ -66,7 +66,6 @@
       <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     </nav>
 
-    <!-- Sidebar -->
     <div id="sidebar" class="sidebar">
       <button class="close-btn" onclick="toggleMenu()">✖</button>
       <ul>
@@ -77,16 +76,14 @@
     </div>
 
     <div class="content">
-      <h2 style="text-align:center; margin-top:120px;">Welcome Baby ❤️</h2>
-      <p style="text-align:center;">You can explore for the time being 💕</p>
+      <h2>Welcome Baby ❤️</h2>
+      <p>You can explore for the time being 💕</p>
 
       <!-- Countdown -->
       <div class="countdown" id="countdown"></div>
-
-      <!-- Love Letter Button -->
       <button id="loveLetterBtn" onclick="goToLoveLetter()">Read Your Love Letter 💌</button>
 
-      <!-- Memories Section -->
+      <!-- Memories -->
       <div class="memories">
         <h2>Our Sweet Memories 💖</h2>
         <div class="memory-card">
@@ -113,65 +110,68 @@
     </div>
   </div>
 
-  <script>
-    // Auto-login
-    document.addEventListener("DOMContentLoaded", () => {
-      if(localStorage.getItem("loggedIn") === "true") {
-        document.getElementById("loginPage").classList.add("hidden");
-        document.getElementById("mainPage").classList.remove("hidden");
-        startCountdown();
-      }
-    });
-
-    // Login
-    function login() {
-      const username = document.getElementById("username").value.trim();
-      const password = document.getElementById("password").value.trim();
-      const error = document.getElementById("error");
-      if(username === "UV" && password === "2") {
-        localStorage.setItem("loggedIn","true");
-        document.getElementById("loginPage").classList.add("hidden");
-        document.getElementById("mainPage").classList.remove("hidden");
-        error.style.display="none";
-        startCountdown();
-      } else { error.style.display="block"; }
+<script>
+  // Auto-login
+  document.addEventListener("DOMContentLoaded", () => {
+    if(localStorage.getItem("loggedIn") === "true") {
+      document.getElementById("loginPage").classList.add("hidden");
+      document.getElementById("mainPage").classList.remove("hidden");
+      startCountdown();
     }
+  });
 
-    // Sidebar toggle
-    function toggleMenu() { document.getElementById("sidebar").classList.toggle("show"); }
+  function login() {
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const error = document.getElementById("error");
+    if(username === "UV" && password === "2") {
+      localStorage.setItem("loggedIn", "true");
+      document.getElementById("loginPage").classList.add("hidden");
+      document.getElementById("mainPage").classList.remove("hidden");
+      error.style.display = "none";
+      startCountdown();
+    } else {
+      error.style.display = "block";
+    }
+  }
 
-    // Love Letter
-    function goToLoveLetter() { window.location.href="loveletter.html"; }
+  function toggleMenu() {
+    document.getElementById("sidebar").classList.toggle("show");
+  }
 
-    // Countdown (Thailand time)
-    function startCountdown() {
-      const targetDate = new Date("2025-09-16T00:00:00+07:00");
-      const countdownElement = document.getElementById("countdown");
-      const loveLetterBtn = document.getElementById("loveLetterBtn");
+  function goToLoveLetter() {
+    window.location.href = "loveletter.html";
+  }
 
-      function updateCountdown() {
-        const now = new Date();
-        const distance = targetDate - now;
+  function startCountdown() {
+    const countdownElement = document.getElementById("countdown");
+    const loveLetterBtn = document.getElementById("loveLetterBtn");
+    const targetDate = new Date("2025-09-16T00:00:00+07:00"); // Thailand midnight
 
-        if(distance <= 0){
-          countdownElement.innerHTML = "⏰ Time’s up, baby! 💖";
-          loveLetterBtn.style.display = "block";
-          clearInterval(interval);
-          return;
-        }
+    function updateCountdown() {
+      const now = new Date();
+      const distance = targetDate - now;
 
-        const days = Math.floor(distance / (1000*60*60*24));
-        const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-        const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-        const seconds = Math.floor((distance % (1000*60)) / 1000);
-
-        countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s left until your surprise 💖`;
+      if(distance <= 0) {
+        countdownElement.innerHTML = "⏰ Time’s up, baby! 💖";
+        loveLetterBtn.style.display = "block";
+        clearInterval(interval);
+        return;
       }
 
-      updateCountdown();
-      const interval = setInterval(updateCountdown, 1000);
+      const days = Math.floor(distance / (1000*60*60*24));
+      const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+      const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+      const seconds = Math.floor((distance % (1000*60)) / 1000);
+
+      countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s left until your surprise 💖`;
     }
-  </script>
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+  }
+</script>
+
 </body>
 </html>
 
