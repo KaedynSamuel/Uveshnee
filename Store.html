@@ -98,17 +98,18 @@
   .item h3 { margin: 10px 0 5px 0; font-size: 1.2rem; color: #ffdee9; }
   .item p { margin: 5px 0 10px 0; font-size: 1rem; color: #ffe1f0; }
 
-  .buy-btn {
+.buy-btn {
     background: linear-gradient(135deg, #ff69b4, #ff85c1);
     color: white;
-    border: none;
-    padding: 10px 15px;
+    border: 3px solid #fff; /* corrected from "soild" to "solid" */
+    padding: 5px 30px;
     border-radius: 15px;
     cursor: pointer;
     font-weight: bold;
     transition: all 0.3s ease;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  }
+}
+
 
   .buy-btn:hover {
     background: linear-gradient(135deg, #ff85c1, #ffb3d1);
@@ -294,4 +295,5 @@ function buyItem(price, imgSrc, button) {
 
 </body>
 </html>
+
 
