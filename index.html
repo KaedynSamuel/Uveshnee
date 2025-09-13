@@ -46,6 +46,13 @@
     .memory-card h3 { margin:0; color:#e91e63; }
     .memory-card p { margin-top:8px; font-size:0.95rem; color:#333;}
 
+    /* Quiz Section */
+    .quiz-section { margin-top:40px; padding:15px; }
+    .quiz-section h2 { text-align:center; color:#ff4081; margin-bottom:20px; }
+    #quiz-container button { margin:5px; padding:10px 15px; border:none; border-radius:8px; background:#ff4081; color:white; cursor:pointer; }
+    #quiz-container button:hover { background:#e91e63; }
+    #nextBtn { margin-top:15px; padding:10px 20px; border:none; border-radius:8px; background:#ff4081; color:white; cursor:pointer; display:none; }
+    #nextBtn:hover { background:#e91e63; }
   </style>
 </head>
 <body>
@@ -107,8 +114,7 @@
           <p>Every laugh we shared made me fall in love with you even more. 💖</p>
         </div>
       </div>
-    </div>
-  </div>
+
       <!-- Quiz Section -->
       <div class="quiz-section">
         <h2>🩷🦥 Our Quiz 🩷🦥 </h2>
@@ -118,39 +124,19 @@
       </div>
     </div>
   </div>
+
 <script>
-  // Auto-login
-  document.addEventListener("DOMContentLoaded", () => {
-    if(localStorage.getItem("loggedIn") === "true") {
-      document.getElementById("loginPage").classList.add("hidden");
-      document.getElementById("mainPage").classList.remove("hidden");
-      startCountdown();
-    }
-  });
-
-  function login() {
-    const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value.trim();
-    const error = document.getElementById("error");
-    if(username === "UV" && password === "2") {
-      localStorage.setItem("loggedIn", "true");
-      document.getElementById("loginPage").classList.add("hidden");
-      document.getElementById("mainPage").classList.remove("hidden");
-      error.style.display = "none";
-      startCountdown();
-    } else {
-      error.style.display = "block";
-    }
-  }
-
+  // Toggle sidebar menu
   function toggleMenu() {
     document.getElementById("sidebar").classList.toggle("show");
   }
 
+  // Go to Love Letter Page
   function goToLoveLetter() {
     window.location.href = "loveletter.html";
   }
 
+  // Countdown function
   function startCountdown() {
     const countdownElement = document.getElementById("countdown");
     const loveLetterBtn = document.getElementById("loveLetterBtn");
@@ -178,6 +164,92 @@
     updateCountdown();
     const interval = setInterval(updateCountdown, 1000);
   }
+
+  // Quiz Data
+  const quizData = [
+    { q: "Where did we first meet?", options: ["Kitchen", "JB South", "21 Kompas"], answer: "21 Kompas" },
+    { q: "What was our first date?", options: ["Picnic", "Movies", "Restaurant"], answer: "Picnic" },
+    { q: "Where do we want to go together soon?", options: ["Paris", "Hawaii", "Bali"], answer: "Hawaii" },
+    { q: "When was our first kiss?", options: ["At the park", "Outside near the fire", "In the car"], answer: "Outside near the fire" },
+    { q: "What's our favorite thing we have in common?", options: ["Cooking", "Travelling", "Music"], answer: "Travelling" },
+    { q: "What is our child’s name?", options: ["Fluffy", "Bubbles", "Snowy"], answer: "Bubbles" },
+    { q: "Why did I fall for you?", options: ["Your smile", "Your kindness","Your eyes", "All of the above"], answer: "All of the above" },
+    { q: "What’s my favorite nickname for you?", options: ["Baby", "Love", "Babygirl"], answer: "Babygirl" },
+    { q: "What do I love most about you?", options: ["Your heart", "Your laugh", "Everything"], answer: "Everything" }
+  ];
+
+  let currentQ = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const quizContainer = document.getElementById("quiz-container");
+    const questionData = quizData[currentQ];
+    quizContainer.innerHTML = `
+      <h3>${questionData.q}</h3>
+      ${questionData.options.map(opt => `<button onclick="selectOption('${opt}')">${opt}</button>`).join("")}
+    `;
+  }
+
+  function selectOption(choice) {
+    const correct = quizData[currentQ].answer;
+    if(choice === correct) score++;
+    document.getElementById("nextBtn").style.display = "inline-block";
+  }
+
+  function nextQuestion() {
+    currentQ++;
+    document.getElementById("nextBtn").style.display = "none";
+    if(currentQ < quizData.length) {
+      loadQuestion();
+    } else {
+      document.getElementById("quiz-container").style.display = "none";
+      const result = document.getElementById("quiz-result");
+      result.classList.remove("hidden");
+      result.innerHTML = `💖 You scored ${score}/${quizData.length}! <br> That’s how much you know about our love story 😘`;
+    }
+  }
+
+  // Login
+  function login() {
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const error = document.getElementById("error");
+
+    if(username === "UV" && password === "2") {
+      localStorage.setItem("isLoggedIn", "true");
+      document.getElementById("loginPage").classList.add("hidden");
+      document.getElementById("mainPage").classList.remove("hidden");
+      error.style.display = "none";
+
+      // Start countdown and quiz after login
+      startCountdown();
+      currentQ = 0;
+      score = 0;
+      document.getElementById("quiz-container").style.display = "block";
+      document.getElementById("nextBtn").style.display = "none";
+      document.getElementById("quiz-result").classList.add("hidden");
+      loadQuestion();
+    } else {
+      error.style.display = "block";
+    }
+  }
+
+  // On page load, check if already logged in
+  document.addEventListener("DOMContentLoaded", () => {
+    if(localStorage.getItem("isLoggedIn") === "true") {
+      document.getElementById("loginPage").classList.add("hidden");
+      document.getElementById("mainPage").classList.remove("hidden");
+
+      // Start countdown and quiz
+      startCountdown();
+      currentQ = 0;
+      score = 0;
+      document.getElementById("quiz-container").style.display = "block";
+      document.getElementById("nextBtn").style.display = "none";
+      document.getElementById("quiz-result").classList.add("hidden");
+      loadQuestion();
+    }
+  });
 </script>
 
 </body>
