@@ -47,12 +47,14 @@ The **Uveshnee website** is a fully responsive, interactive web project built us
 
 ---
 
-## 📁 Project Structure
-Uveshnee-Website/
-├── index.html # Homepage with countdown and navigation
-├── loveletter.html # Personalized love letter page
-├── video.html # Video and music section
-├── style.css # Main CSS file for styling and animations
-├── script.js # JavaScript for countdown and interactivity
-├── images/ # Folder containing all images and media
-└── music/ # Folder for background music files
+### 📁 Project Structure
+
+📂 **Uveshnee-Website/**  
+&nbsp;&nbsp;📄 **index.html** – Homepage with countdown and navigation  
+&nbsp;&nbsp;📄 **loveletter.html** – Personalized love letter page  
+&nbsp;&nbsp;📄 **video.html** – Video and music section  
+&nbsp;&nbsp;📄 **style.css** – Main CSS file for styling and animations  
+&nbsp;&nbsp;📄 **script.js** – JavaScript for countdown and interactivity  
+&nbsp;&nbsp;📂 **images/** – Folder containing all images and media  
+&nbsp;&nbsp;📂 **music/** – Folder for background music files
+
